@@ -1,10 +1,7 @@
 <div id="<%= dom_id message %>">
-  <div style="display:flex; justify-content:space-between ">
-    <strong>Body:</strong>
-    <%= message.body %>
-    <%= link_to "Show", message %>
-    <%= button_to "Delete", message, method: :delete %>
-     <%= button_to "Edit", edit_message_path(message), method: :post %>
-  </div>
-
+    <td>Body:</td>
+    <td><%= message.body %></td>
+    <td><%= link_to "Show", message %></td>
+    <td><%= button_to "Delete", message, method: :delete %></td>
+    <td><%= button_to "Edit", edit_message_path(message), method: :post %></td>
 </div>
