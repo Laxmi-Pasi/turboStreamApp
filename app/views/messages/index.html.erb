@@ -6,6 +6,9 @@
   <%= Message.count %>
   </span>
 </h6>
+
+<%= render "search_form" %>
+
 <div id="new_message">
   <%= render "form", message: Message.new %>
 </div>

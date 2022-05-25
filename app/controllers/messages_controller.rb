@@ -96,6 +96,22 @@ class MessagesController < ApplicationController
     end
   end
 
+  def search
+    if params[:body_search].present?
+      @messages = Message.where("body ILIKE ?","%#{params[:body_search]}%")
+    else
+      @messages = []
+    end
+    respond_to do |format|
+      format.turbo_stream do
+        # render turbo_stream: [
+        #   # turbo_stream.update('search_results',@messages.count)
+        #   # turbo_stream.update('search_results',params[:msg_search])
+        # ]
+        render turbo_stream: turbo_stream.update("search_results", partial: "messages/search_results", locals: { messages: @messages })
+      end
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message

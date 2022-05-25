@@ -1,0 +1,6 @@
+<%= messages.count %>
+<%= messages.each do |msg| %>
+  <br>
+  <%#= msg.id %>
+  <%= highlight(msg.body, params[:body_search]) %>
+<% end %>
