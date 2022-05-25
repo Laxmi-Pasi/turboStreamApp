@@ -35,7 +35,8 @@ class MessagesController < ApplicationController
             turbo_stream.update('new_message', partial: "messages/form", locals: { message: Message.new }),
             turbo_stream.prepend('messages', partial: "messages/message", locals: { message: @message }),
             # turbo_stream.append('messages', partial: "messages/message", locals: { message: @message })
-            turbo_stream.update('message_count', Message.count)
+            turbo_stream.update('message_count', Message.count),
+            turbo_stream.update('notice', "message #{@message.id} created successfully")
           ]
         end        
         # format.html { redirect_to message_url(@message), notice: "Message was successfully created." }
@@ -58,7 +59,8 @@ class MessagesController < ApplicationController
       if @message.update(message_params)
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update('messages', partial: "messages/message", locals: { message: @message })
+            turbo_stream.update('messages', partial: "messages/message", locals: { message: @message }),
+            turbo_stream.update('notice', "message #{@message.id} updated successfully")
           ]
           
         end    
@@ -84,7 +86,8 @@ class MessagesController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@message),
-          turbo_stream.update('message_count', Message.count)
+          turbo_stream.update('message_count', Message.count),
+          turbo_stream.update('notice', "message #{@message.id} was deleted successfully")
         ]
         # render turbo_stream: [turbo_stream.remove("message_#{@message.id}")]  #this will pass dom_id so that it can know which message will be deleted
       end
