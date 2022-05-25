@@ -1,0 +1,9 @@
+<div id="<%= dom_id message %>">
+  <div style="display:flex; justify-content:space-between ">
+    <strong>Body:</strong>
+    <%= message.body %>
+    <%= link_to "Show", message %>
+    <%= button_to "Delete", message, method: :delete %>
+  </div>
+
+</div>
