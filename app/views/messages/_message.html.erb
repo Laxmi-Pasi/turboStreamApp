@@ -4,6 +4,7 @@
     <%= message.body %>
     <%= link_to "Show", message %>
     <%= button_to "Delete", message, method: :delete %>
+     <%= button_to "Edit", edit_message_path(message), method: :post %>
   </div>
 
 </div>

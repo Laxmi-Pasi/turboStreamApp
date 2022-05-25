@@ -17,6 +17,11 @@ class MessagesController < ApplicationController
 
   # GET /messages/1/edit
   def edit
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [turbo_stream.update('messages', partial: "messages/form", locals: { message: @message })]
+      end
+    end
   end
 
   # POST /messages or /messages.json
@@ -30,6 +35,7 @@ class MessagesController < ApplicationController
             turbo_stream.update('new_message', partial: "messages/form", locals: { message: Message.new }),
             turbo_stream.prepend('messages', partial: "messages/message", locals: { message: @message }),
             # turbo_stream.append('messages', partial: "messages/message", locals: { message: @message })
+            turbo_stream.update('message_count', Message.count)
           ]
         end        
         # format.html { redirect_to message_url(@message), notice: "Message was successfully created." }
@@ -50,11 +56,22 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to message_url(@message), notice: "Message was successfully updated." }
-        format.json { render :show, status: :ok, location: @message }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update('messages', partial: "messages/message", locals: { message: @message })
+          ]
+          
+        end    
+        # format.html { redirect_to message_url(@message), notice: "Message was successfully updated." }
+        # format.json { render :show, status: :ok, location: @message }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update('messages', partial: "messages/form", locals: { message: @message })
+          ]
+        end    
+        # format.html { render :edit, status: :unprocessable_entity }
+        # format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -66,8 +83,10 @@ class MessagesController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.remove("message_#{@message.id}")  #this will pass dom_id so that it can know which message will be deleted
+          turbo_stream.remove(@message),
+          turbo_stream.update('message_count', Message.count)
         ]
+        # render turbo_stream: [turbo_stream.remove("message_#{@message.id}")]  #this will pass dom_id so that it can know which message will be deleted
       end
       # format.html { redirect_to messages_url, notice: "Message was successfully destroyed." }
       # format.json { head :no_content }

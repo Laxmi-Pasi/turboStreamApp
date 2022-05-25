@@ -1,6 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Messages</h1>
+<h6>Messages
+  <span id="message_count">
+  <%= Message.count %>
+  </span>
+</h6>
 <div id="new_message">
   <%= render "form", message: Message.new %>
 </div>
