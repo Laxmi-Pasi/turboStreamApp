@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
   def edit
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: [turbo_stream.update('messages', partial: "messages/form", locals: { message: @message })]
+        render turbo_stream: [turbo_stream.prepend(@message, partial: "messages/form", locals: { message: @message })]
       end
     end
   end
@@ -58,11 +58,8 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if @message.update(message_params)
         format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.update('messages', partial: "messages/message", locals: { message: @message }),
-            turbo_stream.update('notice', "message #{@message.id} updated successfully")
-          ]
-          
+          render turbo_stream: turbo_stream.update(@message,
+          partial: "messages/message", locals: {message: @message}) 
         end    
         # format.html { redirect_to message_url(@message), notice: "Message was successfully updated." }
         # format.json { render :show, status: :ok, location: @message }
