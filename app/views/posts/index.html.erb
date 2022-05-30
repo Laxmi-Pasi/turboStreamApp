@@ -1,4 +1,4 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green" id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
 
@@ -6,7 +6,8 @@
   <% @posts.each do |post| %>
     <%= render post %>
     <p>
-      <%= link_to "Show this post", post %>
+      <%= button_to "Edit", edit_post_path(post), data:{turbo_frame: "modal"} %> |
+      <%= link_to "post", post %>
     </p>
   <% end %>
 </div>

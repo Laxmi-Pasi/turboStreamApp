@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    member do
+      post :edit
+    end
+  end
+  
   resources :messages do
     member do
       post :edit

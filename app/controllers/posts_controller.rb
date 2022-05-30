@@ -44,8 +44,14 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-        format.json { render :show, status: :ok, location: @post }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(@post, partial: "posts/post", locals: { post: @post }),
+            turbo_stream.update('notice', "post #{@post.id} updated successfully")
+          ]
+        end
+        # format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
+        # format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
