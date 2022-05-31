@@ -6,8 +6,8 @@
   <% @posts.each do |post| %>
     <%= render post %>
     <p>
-      <%= button_to "Edit", edit_post_path(post), data:{turbo_frame: "modal"} %> |
-      <%= link_to "post", post %>
+      <%= link_to "Edit", edit_post_path(post), data:{turbo_frame: "modal"} %> |
+      <%= link_to "delete", post_path(post), data: {turbo_method: 'delete', turbo_confirm: 'are you sure?'  } %> 
     </p>
   <% end %>
 </div>
