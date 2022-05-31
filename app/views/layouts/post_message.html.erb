@@ -12,7 +12,12 @@
   <body>
     <%= Time.zone.now %>
     <main>
+      <div id="flash" style="position:absolute; z-index: 2; right: 10px;">
+        <%= render partial: "layouts/flash" %>
+      </div>
+      <div style="display: flex; justify-content: space-between">
         <%= yield %>
+        <%= turbo_frame_tag :modal %>
       </div>
     </main>
   </body>
