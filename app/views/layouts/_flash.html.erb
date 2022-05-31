@@ -1,0 +1,7 @@
+<% flash.each do |key, value| %>
+    <b><%#= key %></b>
+    <%#= value %>
+
+    <%# to added div as content and key as div id  %>
+    <%= content_tag :div, value, id: key %>
+<% end %>

@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+/* for flash messages */
+/* for flash messages */
+ #notice{
+    background-color: skyblue;
+    padding: 6px;
+    border-radius: 2px;
+ }

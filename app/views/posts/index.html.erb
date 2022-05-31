@@ -1,15 +1,13 @@
-<p style="color: green" id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
-
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Edit", edit_post_path(post), data:{turbo_frame: "modal"} %> |
-      <%= link_to "delete", post_path(post), data: {turbo_method: 'delete', turbo_confirm: 'are you sure?'  } %> 
-    </p>
-  <% end %>
+<div style="display:flex; flex-direction: column;">
+  <h1>Posts</h1>
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <%= render post %>
+      <p>
+        <%= link_to "Edit", edit_post_path(post), data:{turbo_frame: "modal"} %> |
+        <%= link_to "delete", post_path(post), data: {turbo_method: 'delete', turbo_confirm: 'are you sure?'  } %>
+      </p>
+    <% end %>
+    <%= link_to "New post",new_post_path, data:{turbo_frame: "modal"} %>
+  </div>
 </div>
-
-<%= link_to "New post",new_post_path, data:{turbo_frame: "modal"} %>

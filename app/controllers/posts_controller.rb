@@ -22,13 +22,13 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-
     respond_to do |format|
       if @post.save
+        flash.now[:notice]= "#{@post.id} was successfully created. added at #{Time.zone.now}"
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.prepend('posts', partial: "posts/post", locals: { post: @post }),
-            turbo_stream.update('notice', "post #{@post.id} created successfully")
+            turbo_stream.update('flash', partial: "layouts/flash")
           ]
         end
         # format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
