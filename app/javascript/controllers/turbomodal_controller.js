@@ -20,4 +20,10 @@ export default class extends Controller {
   {
     this.element.remove();
   }
+
+  // to hide flash messagess after 2000 ms
+
+  Autohide(){
+    console.log("connected autohide")
+  }
 }
