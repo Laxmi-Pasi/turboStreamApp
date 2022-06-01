@@ -1,33 +1,42 @@
 <h1>Home#index</h1>
-<div data-controller="dropdown" data-dropdown-open-value= "true">
+<div data-controller="dropdown" data-dropdown-open-value= "true" >
   <!--<button data-action="click->dropdown#openDropDown" data-dropdown-target="openButton" >
    Open Drop Down
    </button>
   <button data-action="click->dropdown#closeDropDown" data-dropdown-target="closeButton" >
    Close Drop Down
    </button>-->
-   <!--<div style="width: 25%;" role="button" data-action="click->dropdown#openDropDown" data-dropdown-target="openButton" >
+  <!--<div style="width: 25%;" role="button" data-action="click->dropdown#openDropDown" data-dropdown-target="openButton" >
    Open Drop Down
    </div>
    <div style="width: 25%;" role="button" data-action="click->dropdown#closeDropDown" data-dropdown-target="closeButton" >
    Close Drop Down
    </div>-->
-   <div  style="width: 25%;" role="button" data-action="click->dropdown#toggleDropdown">
+  <div  style="width: 25%;" role="button" data-action="click->dropdown#toggleDropdown"
+    data-dropdown-target="active">
     Toggle the dropdown 
-   </div>
+  </div>
   <div data-dropdown-target="dropdownContent">
     <p>Find me in app/views/home/index.html.erb</p>
   </div>
 </div>
-
 <div data-controller="dropdown">
-   <div style="width: 25%;" role="button" data-action="click->dropdown#openDropDown" data-dropdown-target="openButton" >
-   Open Drop Down
-   </div>
-   <div style="width: 25%;" role="button" data-action="click->dropdown#closeDropDown" data-dropdown-target="closeButton" >
-   Close Drop Down
-   </div>
+  <div style="width: 25%;" role="button" data-action="click->dropdown#openDropDown" data-dropdown-target="openButton" >
+    Open Drop Down
+  </div>
+  <div style="width: 25%;" role="button" data-action="click->dropdown#closeDropDown" data-dropdown-target="closeButton" class="bgColor">
+    Close Drop Down
+  </div>
   <div data-dropdown-target="dropdownContent">
     <p>Find me in app/views/home/index.html.erb</p>
+  </div>
+</div>
+<div data-controller="dropdown" data-dropdown-open-value= "false" >
+  <div  style="width: 25%;" role="button" data-action="mouseenter->dropdown#toggleDropdown mouseleave->dropdown#toggleDropdown"
+    data-dropdown-target="active">
+    Hover
+  </div>
+  <div data-dropdown-target="dropdownContent">
+    <p>Mouse hover</p>
   </div>
 </div>

@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
 
   //for view/home/index
-  static targets = ["dropdownContent","openButton", "closeButton"]
+  static targets = ["dropdownContent","openButton", "closeButton", "active"]
 
   //to add values
 
@@ -12,7 +12,10 @@ export default class extends Controller {
   connect() {
     if (this.openValue){
       this.openDropDown()
+      // debugger
+      // this.activeTarget.classList.add("bgColor")
     }else{
+      // console.log(this.activeTarget.value)
       this.closeDropDown()
     }
     // this.dropdownContentTarget.hidden = true
@@ -26,9 +29,10 @@ export default class extends Controller {
     try{
       this.closeButtonTarget.hidden = false
       this.openButtonTarget.hidden = true
-    } catch{
-
-    }
+    } catch{}
+    try{
+      this.activeTarget.classList.add("bgColor")
+    }catch{}
   }
 
   //when click on close drop down button
@@ -38,6 +42,9 @@ export default class extends Controller {
       this.closeButtonTarget.hidden = true
       this.openButtonTarget.hidden = false
     } catch{}
+    try{
+      this.activeTarget.classList.remove("bgColor")
+    }catch{}
   }
 
   //toggle dropdown

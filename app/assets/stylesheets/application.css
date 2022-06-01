@@ -21,3 +21,8 @@
     padding: 6px;
     border-radius: 2px;
  }
+
+ .bgColor{
+   background-color:rgb(7, 226, 255);
+   color: black;
+ }
