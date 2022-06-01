@@ -5,6 +5,10 @@ class CommentsController < ApplicationController
   def index
     # @comments = Comment.all
     @pagy, @comments = pagy(Comment.order(created_at: :desc), items: 5)
+    respond_to do |format|
+      format.html # GET
+      format.turbo_stream #POST
+    end
   end
 
   # GET /comments/1 or /comments/1.json
