@@ -6,8 +6,15 @@ export default class extends Controller {
   //for view/home/index
   static targets = ["dropdownContent","openButton", "closeButton"]
 
+  //to add values
+
+  static values = { open: Boolean }
   connect() {
-    this.closeDropDown()
+    if (this.openValue){
+      this.openDropDown()
+    }else{
+      this.closeDropDown()
+    }
     // this.dropdownContentTarget.hidden = true
     // this.closeButtonTarget.hidden = true
     // console.log("connected to dropdown")
