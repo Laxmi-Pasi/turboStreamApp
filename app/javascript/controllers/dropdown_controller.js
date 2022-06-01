@@ -4,25 +4,41 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
 
   //for view/home/index
-  static targets = ["dropdownContent", ,"openButton", "closeButton"]
+  static targets = ["dropdownContent","openButton", "closeButton"]
 
   connect() {
-    this.dropdownContentTarget.hidden = true
-    this.closeButtonTarget.hidden = true
+    this.closeDropDown()
+    // this.dropdownContentTarget.hidden = true
+    // this.closeButtonTarget.hidden = true
     // console.log("connected to dropdown")
   }
 
   //when click on open drop down button
   openDropDown(){
     this.dropdownContentTarget.hidden = false
-    this.closeButtonTarget.hidden = false
-    this.openButtonTarget.hidden = true
+    try{
+      this.closeButtonTarget.hidden = false
+      this.openButtonTarget.hidden = true
+    } catch{
+
+    }
   }
 
   //when click on close drop down button
   closeDropDown(){
-    this.closeButtonTarget.hidden = true
     this.dropdownContentTarget.hidden = true
-    this.openButtonTarget.hidden = false
+    try{
+      this.closeButtonTarget.hidden = true
+      this.openButtonTarget.hidden = false
+    } catch{}
+  }
+
+  //toggle dropdown
+  toggleDropdown(){
+    if(this.dropdownContentTarget.hidden == true){
+      this.openDropDown()
+    }else{  
+      this.closeDropDown()
+    }
   }
 }
