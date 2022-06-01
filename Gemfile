@@ -74,3 +74,5 @@ end
 gem "pry", "~> 0.14.1"
 
 gem "faker", "~> 2.21"
+
+gem "pagy", "~> 5.10"
