@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   # GET /messages or /messages.json
   def index
     @messages = Message.order(created_at: :desc)
+    @pagy, @messages = pagy(Message.order(created_at: :desc), items: 50)
   end
 
   # GET /messages/1 or /messages/1.json
