@@ -1,0 +1,19 @@
+ <%= turbo_frame_tag dom_id(@person, :thumbnail) do %>
+ <p>
+    <strong>Email:</strong>
+    <%= @person.email %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @person.address %>
+  </p>
+
+  <p>
+    <strong>Phone:</strong>
+    <%= @person.phone %>
+  </p>
+   <p>
+      <%= link_to "Show this person", @person %>
+    </p>
+    <% end %>

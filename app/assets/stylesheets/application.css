@@ -26,3 +26,20 @@
    background-color:rgb(7, 226, 255);
    color: black;
  }
+
+ /* for people index*/
+ .hoverWrapper #hoverContent{
+  display: none;
+  position: absolute;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: black;
+  color:white 
+}
+
+
+ .hoverWrapper:hover #hoverContent{
+  display: block;
+  /* background-color: rgb(79, 141, 233);
+  color: white; */
+ }

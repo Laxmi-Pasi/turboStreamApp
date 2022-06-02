@@ -10,6 +10,7 @@
 #     Message.create(body: Faker::Movie.unique.title)
 # end
 
-150.times do
-    Comment.create(Body: Faker::Movie.unique.title)
-end
+# 150.times do
+#     Comment.create(Body: Faker::Movie.unique.title)
+# end
+

@@ -1,22 +1,20 @@
 <div id="<%= dom_id person %>">
-  <p>
+  <span class="hoverWrapper">
+   <strong>Name:</strong>
+    <%= person.name %>
+    <div id="hoverContent">
+      <%= turbo_frame_tag dom_id(person, :thumbnail), loading: :lazy, src: hovercard_person_path(person) do %>
+    Loading..
+  <% end %>
+    </div>
+  </span>
+<details>
+  <summary>
     <strong>Name:</strong>
     <%= person.name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= person.email %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= person.address %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= person.phone %>
-  </p>
-
+  </summary>
+  <%= turbo_frame_tag dom_id(person, :thumbnail), loading: :lazy, src: hovercard_person_path(person) do %>
+    Loading..
+  <% end %>
+</details>
 </div>

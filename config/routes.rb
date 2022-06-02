@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :people
+  resources :people do
+    member do
+      get :hovercard
+    end
+  end
   
   resources :comments do
     collection do
